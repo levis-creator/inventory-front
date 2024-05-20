@@ -24,7 +24,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="">
+    <div className=" bg-slate-50 dark:bg-gray-700">
       <Heading title="Dashboard" />
       <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
         {stats.map((item) => (

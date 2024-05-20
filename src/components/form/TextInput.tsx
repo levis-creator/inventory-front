@@ -37,7 +37,7 @@ const TextInput: React.FC<TextInputProps> = ({
   defaultValue = "",
 }) => {
   return (
-    <div className={className}>
+    <div className={`${className}`}>
       {" "}
       <label
         htmlFor={name}
