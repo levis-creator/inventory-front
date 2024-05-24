@@ -13,3 +13,9 @@ export type SimplifiedData = {
   id: string | number;
   name: string;
 };
+
+export type Category = {
+  id?: number;
+  title: string;
+  image: string;
+};
