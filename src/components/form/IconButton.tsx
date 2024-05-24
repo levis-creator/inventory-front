@@ -16,7 +16,7 @@ const IconButton: FC<IconButtonProps> = ({
     <button
       onClick={onClick}
       type="button"
-      className={`${className} text-white bg-transparent hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-transparent dark:hover:bg-gray-700 dark:focus:ring-gray-800`}
+      className={`${className} hover:bg-slate-100 dark:text-white bg-transparent dark:hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-transparent dark:hover:bg-gray-700 dark:focus:ring-gray-800`}
     >
       {icon}
       <span className="sr-only">{iconDescription}</span>
