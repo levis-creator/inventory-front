@@ -96,10 +96,10 @@ const ProductForm = () => {
           endpoint="productUploader"
         />
         <ToggleInput
-          trueTitle="Publish"
-          falseTitle="Draft"
-          label="Publish  Product"
-          name="isPublished"
+          trueTitle="Is available"
+          falseTitle="Not available"
+          label="Product availability"
+          name="isAvailable"
           register={register}
           isActive={isAvailable}
           checked={true}

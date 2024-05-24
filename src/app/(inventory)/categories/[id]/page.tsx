@@ -5,7 +5,7 @@ const Page = () => {
   return (
     <div>
       <Heading title="T-shirt" addBtn={true} path="/products/new" />
-      <ProductTable/>``
+      <ProductTable/>
     </div>
   );
 };

@@ -6,6 +6,7 @@ export type Product = {
   image: string;
   category: string;
   quantity: number;
+  brand:string;
   isAvailable: boolean;
   SKU: string;
 };

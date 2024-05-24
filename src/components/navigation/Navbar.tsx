@@ -16,7 +16,7 @@ const Navbar: FC<NavbarProps> = ({ showSideBar, handleSideBar }) => {
             {!showSideBar && (
               <button
                 onClick={handleSideBar}
-                className="hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
+                className="hidden p-2 mr-3 text-white rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
               >
                 <AlignJustify />
                 <span className="sr-only">Menu</span>
