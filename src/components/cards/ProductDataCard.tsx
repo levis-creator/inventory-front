@@ -1,11 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ProductDataCard = () => {
+  const router = useRouter();
   return (
-    <Link href={"/products/1"} className="table-row bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-    
-
+    <tr
+      onClick={() => router.push("/products/903u38978")}
+      className="table-row bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+    >
       <td className="w-4 p-4">
         <div className="flex items-center">
           <input
@@ -37,8 +39,7 @@ const ProductDataCard = () => {
       <td className="px-6 py-4">React Developer</td>
       <td className="px-6 py-4">10 in stock</td>
       <td className="px-6 py-4">T-shirt</td>
-
-    </Link>
+    </tr>
   );
 };
 
