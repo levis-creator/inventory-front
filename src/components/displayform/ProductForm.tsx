@@ -1,6 +1,7 @@
 "use client";
 
 import { makePostRequest } from "@/utils/apiRequest";
+import { Product, SimplifiedData } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,7 +11,6 @@ import SelectInput from "../form/SelectInput";
 import TextAreaInput from "../form/TextAreaInput";
 import TextInput from "../form/TextInput";
 import ToggleInput from "../form/ToggleInput";
-import { Product, SimplifiedData } from "@/utils/types";
 
 const ProductForm = () => {
   const [loading, setLoading] = useState<boolean>(false);

@@ -23,7 +23,6 @@ const Heading: FC<HeadingProps> = ({
       <h2 className="font-semibold text-2xl">{title}</h2>
       {addBtn && (
         <PrimaryButton
-          className="flex gap-3"
           onClick={() => router.push(`${path}`)}
         >
           <Plus />
