@@ -13,9 +13,9 @@ import TextInput from "../form/TextInput";
 import ToggleInput from "../form/ToggleInput";
 
 type ProductFormProps = {
-  categories:SimplifiedData[]
-}
-const ProductForm:FC<ProductFormProps> = ({categories}) => {
+  categories: SimplifiedData[];
+};
+const ProductForm: FC<ProductFormProps> = ({ categories }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
   const {
@@ -33,6 +33,7 @@ const ProductForm:FC<ProductFormProps> = ({categories}) => {
   const router = useRouter();
   const handleSubmitClick: SubmitHandler<Product> = async (data: Product) => {
     data.image = imageUrl;
+    console.log(data);
     await makePostRequest({
       setLoading,
       endpoint: "api/products",

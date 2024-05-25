@@ -1,7 +1,11 @@
+import { ProductListDisplay } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-const ProductDataCard = () => {
+import { FC } from "react";
+type ProductDataCardProps = {
+  data: ProductListDisplay;
+};
+const ProductDataCard: FC<ProductDataCardProps> = ({ data }) => {
   const router = useRouter();
   return (
     <tr
@@ -25,20 +29,20 @@ const ProductDataCard = () => {
         className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
       >
         <Image
-          src="/prod1.png"
-          alt="Jese image"
+          src={data.image}
+          alt={data.name}
           width={0}
           height={0}
           className="w-10 h-10 rounded-full"
           unoptimized
         />
         <div className="ps-3">
-          <div className="text-base font-semibold">Levis tshirts </div>
+          <div className="text-base font-semibold">{data.name}</div>
         </div>
       </th>
-      <td className="px-6 py-4">React Developer</td>
-      <td className="px-6 py-4">10 in stock</td>
-      <td className="px-6 py-4">T-shirt</td>
+      <td className="px-6 py-4">available</td>
+      <td className="px-6 py-4">{data.quantity} in stock</td>
+      <td className="px-6 py-4">{data.category}</td>
     </tr>
   );
 };
