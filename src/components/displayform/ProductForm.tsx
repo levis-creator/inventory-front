@@ -3,7 +3,7 @@
 import { makePostRequest } from "@/utils/apiRequest";
 import { Product, SimplifiedData } from "@/utils/types";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../form/Button";
 import ImageInput from "../form/ImageInput";
@@ -12,10 +12,12 @@ import TextAreaInput from "../form/TextAreaInput";
 import TextInput from "../form/TextInput";
 import ToggleInput from "../form/ToggleInput";
 
-const ProductForm = () => {
+type ProductFormProps = {
+  categories:SimplifiedData[]
+}
+const ProductForm:FC<ProductFormProps> = ({categories}) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
-  const categories: SimplifiedData[] = [];
   const {
     register,
     reset,
@@ -58,6 +60,16 @@ const ProductForm = () => {
           label="Product description"
           register={register}
           errors={errors}
+          isRequired={false}
+        />
+
+        <TextInput
+          name="brand"
+          label="Product brand"
+          type="text"
+          register={register}
+          errors={errors}
+          className="w-full"
         />
         <TextInput
           name="price"

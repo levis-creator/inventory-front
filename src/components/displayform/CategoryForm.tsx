@@ -9,6 +9,7 @@ import Button from "../form/Button";
 import ImageInput from "../form/ImageInput";
 import TextAreaInput from "../form/TextAreaInput";
 import TextInput from "../form/TextInput";
+import { generateSlug } from "@/utils/slugGenerator";
 
 const CategoryForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,11 +25,12 @@ const CategoryForm = () => {
   const router = useRouter();
   const handleSubmitClick: SubmitHandler<Category> = async (data: Category) => {
     data.image = imageUrl;
+    data.slug = generateSlug(data.title);
     await makePostRequest({
       setLoading,
-      endpoint: "api/products",
+      endpoint: "api/categories",
       data,
-      resourceName: "Product",
+      resourceName: "Category",
       reset,
       redirect: () => router.push("/categories"),
     }).then(() => setImageUrl(""));

@@ -6,17 +6,18 @@ export type Product = {
   image: string;
   category: string;
   quantity: number;
-  brand:string;
+  brand: string;
   isAvailable: boolean;
   SKU: string;
 };
 export type SimplifiedData = {
   id: string | number;
-  name: string;
+  title: string;
 };
 
 export type Category = {
   id?: number;
   title: string;
   image: string;
+  slug: string;
 };
