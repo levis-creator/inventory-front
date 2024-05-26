@@ -33,7 +33,6 @@ const ProductForm: FC<ProductFormProps> = ({ categories }) => {
   const router = useRouter();
   const handleSubmitClick: SubmitHandler<Product> = async (data: Product) => {
     data.image = imageUrl;
-    console.log(data);
     await makePostRequest({
       setLoading,
       endpoint: "api/products",

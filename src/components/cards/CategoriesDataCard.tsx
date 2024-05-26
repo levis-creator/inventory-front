@@ -23,7 +23,7 @@ const CategoriesDataCard: FC<CategoriesDataCardProps> = ({ data }) => {
         />
         <div className="ps-3">
           <div className="text-base font-semibold">{data.title} </div>
-          <div>10 items</div>
+          <div>{data.items_count} items</div>
         </div>
       </div>
       <div className="px-6 py-4">

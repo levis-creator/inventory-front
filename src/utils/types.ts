@@ -11,12 +11,12 @@ export type Product = {
   SKU: string;
 };
 export type ProductListDisplay = {
-    id: number;
-    name:string;
-    image:string;
-    quantity:number;
-    category:string;
-}
+  id: number;
+  name: string;
+  image: string;
+  quantity: number;
+  category: string;
+};
 export type SimplifiedData = {
   id: string | number;
   title: string;
@@ -27,4 +27,5 @@ export type Category = {
   title: string;
   image: string;
   slug: string;
+  items_count?: number;
 };
