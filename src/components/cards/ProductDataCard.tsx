@@ -1,3 +1,4 @@
+"use client";
 import { ProductListDisplay } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -7,9 +8,10 @@ type ProductDataCardProps = {
 };
 const ProductDataCard: FC<ProductDataCardProps> = ({ data }) => {
   const router = useRouter();
+
   return (
     <tr
-      onClick={() => router.push("/products/903u38978")}
+      onClick={() => router.push(`/products/${data.id}`)}
       className="table-row bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
     >
       <td className="w-4 p-4">

@@ -5,7 +5,7 @@ import { FC } from "react";
 type ProductTableProps = {
   data: ProductListDisplay[];
 };
-const ProductTable: FC<ProductTableProps> = ({ data }) => {
+const ProductTable: FC<ProductTableProps> = ({ data=[] }) => {
   return (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -37,9 +37,9 @@ const ProductTable: FC<ProductTableProps> = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((product: ProductListDisplay) => (
+        {data!=0?data.map((product: ProductListDisplay) => (
           <ProductDataCard key={product.id} data={product} />
-        ))}
+        )):null}
       </tbody>
     </table>
   );

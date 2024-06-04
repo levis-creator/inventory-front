@@ -30,7 +30,7 @@ const CategoriesDataCard: FC<CategoriesDataCardProps> = ({ data }) => {
         <IconButton
           icon={<ArrowRight />}
           iconDescription="category"
-          onClick={() => router.push(`/categories/${data.id}`)}
+          onClick={() => router.push(`/products?category=${data.slug}`)}
         />
       </div>
     </div>

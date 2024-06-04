@@ -1,11 +1,13 @@
+
 import SingleProductCard from "@/components/cards/SingleProductCard";
 import Heading from "@/components/Heading";
 
-const Page = () => {
+const Page = async () => {
+
   return (
     <div>
       <Heading title="Product" closeBtn={true} />
-      <SingleProductCard/>
+      <SingleProductCard />
     </div>
   );
 };
