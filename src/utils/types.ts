@@ -30,3 +30,8 @@ export type Category = {
   slug: string;
   items_count?: number;
 };
+
+export type LoginData = {
+  email: string;
+  password: string;
+};

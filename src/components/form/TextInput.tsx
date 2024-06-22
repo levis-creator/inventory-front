@@ -25,6 +25,7 @@ type TextInputProps = {
   type?: InputType;
   className?: string;
   defaultValue?: string;
+  placeholder?: string;
 };
 const TextInput: React.FC<TextInputProps> = ({
   label,
@@ -35,13 +36,14 @@ const TextInput: React.FC<TextInputProps> = ({
   type = "text",
   className = "sm:col-span-2",
   defaultValue = "",
+  placeholder = `Type the ${label.toLowerCase()}`,
 }) => {
   return (
     <div className={`${className}`}>
       {" "}
       <label
         htmlFor={name}
-        className="block text-sm font-medium leading-6 text-slate-800 dark:text-slate-50 mb-2 "
+        className="block text-sm font-medium leading-6 text-slate-800 dark:text-slate-50 mb-2 capitalize"
       >
         {label}
       </label>
@@ -53,7 +55,7 @@ const TextInput: React.FC<TextInputProps> = ({
           id={name}
           defaultValue={defaultValue}
           className="block w-full rounded-md border-0 p-3 dark:bg-transparent text-slate-800 dark:text-slate-50 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-slate-400  focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-          placeholder={`Type the ${label.toLowerCase()}`}
+          placeholder={placeholder}
         />
         {errors[`${name}`] && (
           <span className="text-sm text-red-600 ">{label} is required</span>
