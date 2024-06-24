@@ -1,12 +1,10 @@
 "use client";
 import Navbar from "@/components/navigation/Navbar";
 import SideBar from "@/components/navigation/SideBar";
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { redirect } from "next/navigation";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
-import { options } from "../api/auth/[...nextauth]/options";
-import { useSession } from "next-auth/react";
 import Loading from "../loading";
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {

@@ -3,7 +3,9 @@ export type RequestParams = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   endpoint: string;
   data: object;
-  resourceName: string;
+  resourceName?: string;
+  successMessage?: string;
+  failedMessage?: string;
   reset: () => void;
   redirect: () => void;
 };
@@ -14,6 +16,8 @@ export async function makePostRequest({
   resourceName,
   reset,
   redirect,
+  successMessage = `New ${resourceName} Created Successfully`,
+  failedMessage = "Something Went wrong",
 }: RequestParams) {
   try {
     setLoading(true);
@@ -28,7 +32,7 @@ export async function makePostRequest({
 
     if (response.ok) {
       setLoading(false);
-      toast.success(`New ${resourceName} Created Successfully`);
+      toast.success(successMessage);
       reset();
       redirect();
     } else {
@@ -36,7 +40,7 @@ export async function makePostRequest({
       if (response.status === 409) {
         toast.error("Already exists");
       } else {
-        toast.error("Something Went wrong");
+        toast.error(failedMessage);
       }
     }
     console.log(response.status);

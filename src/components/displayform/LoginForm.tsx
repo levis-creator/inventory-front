@@ -1,24 +1,44 @@
 "use client";
+import { makePostRequest } from "@/utils/apiRequest";
 import { LoginData } from "@/utils/types";
-import React from "react";
-import { useForm } from "react-hook-form";
-import TextInput from "../form/TextInput";
-import Button from "../form/Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import TextInput from "../form/TextInput";
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
   const {
     register,
     formState: { errors },
+    reset,
     handleSubmit,
   } = useForm<LoginData>();
+  const handleLogin: SubmitHandler<LoginData> = async (data: LoginData) => {
+    await makePostRequest({
+      setLoading,
+      endpoint: "/api/auth/login",
+      data,
+      reset,
+      redirect: () => router.push("/products"),
+      successMessage: "Login success",
+      failedMessage: "Login failed",
+    });
+  };
+
   return (
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Sign in to your account
         </h1>
-        <form className="space-y-4 md:space-y-6" action="#">
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          className="space-y-4 md:space-y-6"
+          action="#"
+        >
           <TextInput
             name="email"
             label="email"
