@@ -1,8 +1,12 @@
 import { Product } from "@/utils/types";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
   const body: Product = await request.json();
+  const token = cookies().get("session")?.value;
+  console.log("hello               dooohohihhhhhhhhhhhhhhhhhh");
+
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`, {
     method: "POST",
     body: JSON.stringify(body),
@@ -16,14 +20,16 @@ export const POST = async (request: Request) => {
         error,
       })
     );
+
   return data;
 };
 export const GET = async (request: Request) => {
   const url = new URL(request.url);
   const category = url.searchParams.get("category");
   let data: any;
-
-  console.log(category);
+  const token = request.headers;
+  console.log("hello               dooohohihhhhhhhhhhhhhhhhhh");
+  console.log(token);
   try {
     if (category == null) {
       data = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`, {
@@ -47,6 +53,7 @@ export const GET = async (request: Request) => {
         return data.json();
       });
     }
+
     return Response.json(data);
   } catch (error) {
     NextResponse.json({

@@ -7,15 +7,18 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
 import { Toaster } from "react-hot-toast";
 import { extractRouterConfig } from "uploadthing/server";
+import DataProvider from "./DataProvider";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system">
-      <SessionProvider>
-        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <Toaster position="top-center" reverseOrder={false} />
-        {children}
-      </SessionProvider>
-    </NextThemesProvider>
+    <DataProvider>
+      <NextThemesProvider attribute="class" defaultTheme="system">
+        <SessionProvider>
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <Toaster position="top-center" reverseOrder={false} />
+          {children}
+        </SessionProvider>
+      </NextThemesProvider>
+    </DataProvider>
   );
 }

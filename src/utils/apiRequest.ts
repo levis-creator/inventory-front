@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 export type RequestParams = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,6 +9,7 @@ export type RequestParams = {
   failedMessage?: string;
   reset: () => void;
   redirect: () => void;
+  token: string;
 };
 export async function makePostRequest({
   setLoading,
@@ -18,6 +20,7 @@ export async function makePostRequest({
   redirect,
   successMessage = `New ${resourceName} Created Successfully`,
   failedMessage = "Something Went wrong",
+  token,
 }: RequestParams) {
   try {
     setLoading(true);
@@ -26,6 +29,7 @@ export async function makePostRequest({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `bearer ${token}`,
       },
       body: JSON.stringify(data),
     });

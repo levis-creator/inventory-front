@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextInput from "../form/TextInput";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -17,14 +18,10 @@ const LoginForm = () => {
     handleSubmit,
   } = useForm<LoginData>();
   const handleLogin: SubmitHandler<LoginData> = async (data: LoginData) => {
-    await makePostRequest({
-      setLoading,
-      endpoint: "/api/auth/login",
-      data,
-      reset,
-      redirect: () => router.push("/products"),
-      successMessage: "Login success",
-      failedMessage: "Login failed",
+    await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      callbackUrl: "/",
     });
   };
 

@@ -1,6 +1,7 @@
 "use client";
 import ProductTable from "@/components/cards/ProductTable";
 import Heading from "@/components/Heading";
+import useDataProvider from "@/hooks/useDataProvider";
 import { getData } from "@/utils/getData";
 import { ProductListDisplay } from "@/utils/types";
 import { useSearchParams } from "next/navigation";
@@ -9,13 +10,16 @@ import { useEffect, useState } from "react";
 const Page = () => {
   const [products, setProducts] = useState<ProductListDisplay[]>([]);
   const slug = useSearchParams().get("category");
+  const { token } = useDataProvider();
   useEffect(() => {
-    if(slug==null){
-      getData("products").then((data) => setProducts(data));
+    if (slug == null) {
+      getData("products", token.current).then((data) => setProducts(data));
     } else {
-      getData(`products?category=${slug}`).then((data) => setProducts(data));
+      getData(`products?category=${slug}`, token.current).then((data) =>
+        setProducts(data)
+      );
     }
-  }, [slug]);
+  }, [slug, token]);
 
   return (
     <div>

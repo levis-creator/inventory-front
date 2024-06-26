@@ -11,6 +11,7 @@ import SelectInput from "../form/SelectInput";
 import TextAreaInput from "../form/TextAreaInput";
 import TextInput from "../form/TextInput";
 import ToggleInput from "../form/ToggleInput";
+import useDataProvider from "@/hooks/useDataProvider";
 
 type ProductFormProps = {
   categories: SimplifiedData[];
@@ -31,6 +32,7 @@ const ProductForm: FC<ProductFormProps> = ({ categories }) => {
   });
   const isAvailable = watch("isAvailable");
   const router = useRouter();
+  const { token } = useDataProvider();
   const handleSubmitClick: SubmitHandler<Product> = async (data: Product) => {
     data.image = imageUrl;
     await makePostRequest({
@@ -38,6 +40,7 @@ const ProductForm: FC<ProductFormProps> = ({ categories }) => {
       endpoint: "api/products",
       data,
       resourceName: "Product",
+      token: token.current,
       reset,
       redirect: () => router.push("/products"),
     }).then(() => setImageUrl(""));

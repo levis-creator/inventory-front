@@ -1,4 +1,6 @@
+import { UserData } from "@/utils/types";
 import { NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 export const options: NextAuthOptions = {
   providers: [
@@ -13,15 +15,12 @@ export const options: NextAuthOptions = {
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
           {
             method: "POST",
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
+            body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
           }
         );
-        const user = await res.json();
-        if (res.ok && user) {
+        const user: UserData = await res.json();
+        if (user) {
           return user;
         }
         return null;
@@ -30,5 +29,14 @@ export const options: NextAuthOptions = {
   ],
   pages: {
     signIn: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token, user }) {
+      session.user = token;
+      return session;
+    },
   },
 };

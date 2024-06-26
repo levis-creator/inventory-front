@@ -6,30 +6,34 @@ import { useTheme } from "next-themes";
 import { redirect } from "next/navigation";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import Loading from "../loading";
+import useDataProvider from "@/hooks/useDataProvider";
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState<boolean>(true);
   const { theme } = useTheme();
-  console.log(theme);
   const handleSideBar = () => {
     setShowSideBar(!showSideBar);
   };
+  const { setSession } = useDataProvider();
   const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/api/auth/signin?callbackUrl=/login");
+      redirect("/api/auth/signin?callbackUrl=/signin");
     },
   });
   const loading = useRef<boolean>(true);
   useEffect(() => {
     if (!session) {
-      session;
-      loading.current = true;
+      setSession(session);
+      loading.current = false;
+    } else {
+      loading.current = false;
     }
-  }, [session]);
+  }, [session, setSession]);
+  console.log({ session });
   return (
     <>
-      {loading ? (
+      {loading.current ? (
         <Loading />
       ) : (
         <div className="font-sans bg-slate-50 dark:text-white dark:bg-gray-700">
